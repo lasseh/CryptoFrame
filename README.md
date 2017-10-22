@@ -4,8 +4,8 @@ This is a picture frame from Ikea with some 7segment displays to show the curren
 
 ## Partlist
 
-7 Segment Displays https://www.adafruit.com/product/1268
-Ikea Frame http://www.ikea.com/no/no/catalog/products/60378462/#/60378396
+* 7 Segment Displays https://www.adafruit.com/product/1268
+* Ikea Frame http://www.ikea.com/no/no/catalog/products/60378462/#/60378396
 
 ## Screenshot
 
