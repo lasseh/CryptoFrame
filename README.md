@@ -9,5 +9,5 @@ This is a picture frame from Ikea with some 7segment displays to show the curren
 
 ## Screenshot
 
-![1](https://i.imgur.com/XlA6ewk.jpg)
+![1](https://i.imgur.com/XlA6ewk.jpg?2)
 
