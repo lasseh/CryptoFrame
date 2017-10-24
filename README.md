@@ -1,4 +1,4 @@
-# CryptoFram
+# CryptoFrame
 
 This is a picture frame from Ikea with some 7segment displays to show the current price of bitcoin and ethereum.
 
