@@ -9,17 +9,17 @@ import (
 	"github.com/lasseh/goi2c/devices/ledBackpack7Segment"
 )
 
-// Coinbase is the response from Coinbase.com api
-type Coinbase struct {
-	Data struct {
-		Amount   float64 `json:"amount,string"`
-		Base     string  `json:"base"`
-		Currency string  `json:"currency"`
-	} `json:"data"`
+// Cryptowatch is the returning json
+type Cryptowatch struct {
+	Result struct {
+		Price float64 `json:"price"`
+	} `json:"result"`
 }
 
-var btcURL = "https://api.coinbase.com/v2/prices/BTC-USD/buy"
-var ethURL = "https://api.coinbase.com/v2/prices/ETH-USD/buy"
+var exchange = "bitfinex"
+
+var btcURL = "https://api.cryptowat.ch/markets/" + exchange + "/btcusd/price"
+var ethURL = "https://api.cryptowat.ch/markets/" + exchange + "/ethusd/price"
 
 func main() {
 	fmt.Println("Initiate displays")
@@ -49,7 +49,7 @@ func main() {
 
 	for {
 		// Bitcoin
-		btc := Coinbase{}
+		btc := Cryptowatch{}
 		getJSON(btcURL, &btc)
 		// Add padding to right align the number
 		btcValue := fmt.Sprintf("%4d", int(btc.Data.Amount))
@@ -57,7 +57,7 @@ func main() {
 		fmt.Println("Bitcoin Price:", btc.Data.Amount)
 
 		// Ethereum
-		eth := Coinbase{}
+		eth := Cryptowatch{}
 		getJSON(ethURL, &eth)
 		// Add padding to right align the number
 		ethValue := fmt.Sprintf("%4d", int(eth.Data.Amount))
@@ -72,16 +72,11 @@ func main() {
 
 func getJSON(url string, target interface{}) error {
 	client := &http.Client{Timeout: 10 * time.Second}
-
 	req, err := http.NewRequest("GET", url, nil)
-	// Coinbase requires this header, ¯\_(ツ)_/¯
-	req.Header.Add("CB-VERSION", "2017-01-01")
-
 	resp, err := client.Do(req)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
-
 	return json.NewDecoder(resp.Body).Decode(target)
 }
