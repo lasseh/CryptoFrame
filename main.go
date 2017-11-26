@@ -52,17 +52,17 @@ func main() {
 		btc := Cryptowatch{}
 		getJSON(btcURL, &btc)
 		// Add padding to right align the number
-		btcValue := fmt.Sprintf("%4d", int(btc.Data.Amount))
+		btcValue := fmt.Sprintf("%4d", int(btc.Result.Price))
 		display1.WriteString(btcValue)
-		fmt.Println("Bitcoin Price:", btc.Data.Amount)
+		fmt.Println("Bitcoin Price:", btc.Result.Price)
 
 		// Ethereum
 		eth := Cryptowatch{}
 		getJSON(ethURL, &eth)
 		// Add padding to right align the number
-		ethValue := fmt.Sprintf("%4d", int(eth.Data.Amount))
+		ethValue := fmt.Sprintf("%4d", int(eth.Result.Price))
 		display2.WriteString(ethValue)
-		fmt.Println("Etherum Price:", eth.Data.Amount)
+		fmt.Println("Etherum Price:", eth.Result.Price)
 
 		time.Sleep(30 * time.Second)
 	}
